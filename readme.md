@@ -43,15 +43,20 @@ yarn add @naeimsafaee/ipg-node
 ```ts
 const { PaymentGateway , ZibalDriver } = require('ipg-node');
 
-const gateway = new PaymentGateway([
-  new ZibalDriver(process.env.ZIBAL_API_KEY)
-]);
+const gateway = new PaymentGateway({
+   drivers: [new ZibalDriver("")],
+   config: {
+      callbackUrlOverride: paymentCallbackUrl,
+      sandbox: true
+   }
+});
 
 async function checkout() {
   // 1. Create payment
   const { success, paymentUrl, raw } = await gateway.pay('zibal', {
     amount:      250000,
-    callbackUrl: 'https://yourapp.com/callback',
+     // If no callbackUrl was provided in the PaymentRequest, fall back to callbackUrlOverride from the gateway config
+     //callbackUrl: 'https://yourapp.com/callback',  
     orderId:     'order_1234'
   })
 

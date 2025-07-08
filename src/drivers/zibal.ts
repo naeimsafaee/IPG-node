@@ -15,7 +15,7 @@ export class ZibalDriver implements PaymentDriver {
     async createPayment(req: PaymentRequest , config?: DriverConfig): Promise<PaymentResponse> {
 
         const amount = config?.isAmountInRial ? req.amount : req.amount * 10;
-        const callback = config?.callbackUrlOverride ?? req.callbackUrl;
+        const callback = req.callbackUrl ?? config?.callbackUrlOverride;
 
         const { data } = await axios.post(
             `${this.baseUrl}/v1/request`,
