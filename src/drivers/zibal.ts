@@ -12,19 +12,17 @@ export class ZibalDriver implements PaymentDriver {
         this.apiKey = apiKey;
     }
 
-    async createPayment(req: PaymentRequest , config:DriverConfig): Promise<PaymentResponse> {
+    async createPayment(req: PaymentRequest , config?: DriverConfig): Promise<PaymentResponse> {
 
-        let amount = req.amount;
-        if(!config.isAmountInRial){
-            amount *= 10;
-        }
+        const amount = config?.isAmountInRial ? req.amount : req.amount * 10;
+        const callback = config?.callbackUrlOverride ?? req.callbackUrl;
 
         const { data } = await axios.post(
             `${this.baseUrl}/v1/request`,
             {
-                merchant: this.apiKey,
+                merchant: config?.sandbox ? "zibal" : this.apiKey,
                 amount: amount,
-                callbackUrl: req.callbackUrl,
+                callbackUrl: callback,
                 orderId: req.orderId,
             }
         );

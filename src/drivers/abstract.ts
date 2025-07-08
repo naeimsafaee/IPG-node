@@ -3,7 +3,7 @@ import {DriverConfig, PaymentRequest, PaymentResponse, VerificationResponse} fro
 
 export interface PaymentDriver {
     /** Initiate a payment: returns URL or payment token */
-    createPayment(req: PaymentRequest , config:DriverConfig): Promise<PaymentResponse>;
+    createPayment(req: PaymentRequest , config?: DriverConfig): Promise<PaymentResponse>;
 
     /** After callback, verify the transaction */
     verifyPayment(data: any): Promise<VerificationResponse>;

@@ -1,7 +1,9 @@
 // src/types.ts
+import {PaymentDriver} from "./drivers/abstract";
+
 export interface PaymentRequest {
     amount: number;          // rial
-    callbackUrl: string;
+    callbackUrl?: string;
     orderId?: string;        // optional merchant reference
     [k: string]: any;
 }
@@ -19,5 +21,12 @@ export interface VerificationResponse {
 }
 
 export interface DriverConfig {
-    isAmountInRial: boolean;
+    isAmountInRial?: boolean;
+    callbackUrlOverride?: String;
+    sandbox?: boolean;
+}
+
+export interface PaymentGatewayOptions {
+    drivers?: PaymentDriver[];
+    config?: DriverConfig;
 }

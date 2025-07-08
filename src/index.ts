@@ -1,15 +1,15 @@
 // src/index.ts
 import { PaymentDriver } from './drivers/abstract';
 import {ZibalDriver} from './drivers/zibal';
-import {DriverConfig} from "./types";
+import {DriverConfig, PaymentGatewayOptions} from "./types";
 
 class PaymentGateway {
     private drivers = new Map<string, PaymentDriver>();
-
-    private readonly config:DriverConfig;
+    private readonly config?: DriverConfig;
 
     /** Register one or more drivers up-front */
-    constructor(drivers: PaymentDriver[] = [] , config: DriverConfig) {
+    constructor(options: PaymentGatewayOptions = {}) {
+        const { drivers = [], config } = options;
         this.config = config;
         drivers.forEach(d => this.register(d));
     }
