@@ -1,7 +1,7 @@
 // src/drivers/zibal.ts
 import axios from 'axios';
 import { PaymentDriver } from './abstract';
-import { PaymentRequest, PaymentResponse, VerificationResponse } from '../types';
+import {DriverConfig, PaymentRequest, PaymentResponse, VerificationResponse} from '../types';
 
 export class ZibalDriver implements PaymentDriver {
     public readonly driverName = 'zibal';
@@ -12,12 +12,18 @@ export class ZibalDriver implements PaymentDriver {
         this.apiKey = apiKey;
     }
 
-    async createPayment(req: PaymentRequest): Promise<PaymentResponse> {
+    async createPayment(req: PaymentRequest , config:DriverConfig): Promise<PaymentResponse> {
+
+        let amount = req.amount;
+        if(!config.isAmountInRial){
+            amount *= 10;
+        }
+
         const { data } = await axios.post(
             `${this.baseUrl}/v1/request`,
             {
                 merchant: this.apiKey,
-                amount: req.amount,
+                amount: amount,
                 callbackUrl: req.callbackUrl,
                 orderId: req.orderId,
             }

@@ -17,3 +17,7 @@ export interface VerificationResponse {
     traceNo?: string;
     raw?: any;
 }
+
+export interface DriverConfig {
+    isAmountInRial: boolean;
+}

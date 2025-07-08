@@ -1,12 +1,16 @@
 // src/index.ts
 import { PaymentDriver } from './drivers/abstract';
 import {ZibalDriver} from './drivers/zibal';
+import {DriverConfig} from "./types";
 
 class PaymentGateway {
     private drivers = new Map<string, PaymentDriver>();
 
+    private readonly config:DriverConfig;
+
     /** Register one or more drivers up-front */
-    constructor(drivers: PaymentDriver[] = []) {
+    constructor(drivers: PaymentDriver[] = [] , config: DriverConfig) {
+        this.config = config;
         drivers.forEach(d => this.register(d));
     }
 
@@ -30,7 +34,7 @@ class PaymentGateway {
         driverName: string,
         req: Parameters<PaymentDriver['createPayment']>[0]
     ) {
-        return this.driver(driverName).createPayment(req);
+        return this.driver(driverName).createPayment(req , this.config);
     }
 
     /** Shorthand: verify via a named driver */

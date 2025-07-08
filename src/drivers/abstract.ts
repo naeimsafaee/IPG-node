@@ -1,9 +1,9 @@
 // src/drivers/abstract.ts
-import { PaymentRequest, PaymentResponse, VerificationResponse } from '../types';
+import {DriverConfig, PaymentRequest, PaymentResponse, VerificationResponse} from '../types';
 
 export interface PaymentDriver {
     /** Initiate a payment: returns URL or payment token */
-    createPayment(req: PaymentRequest): Promise<PaymentResponse>;
+    createPayment(req: PaymentRequest , config:DriverConfig): Promise<PaymentResponse>;
 
     /** After callback, verify the transaction */
     verifyPayment(data: any): Promise<VerificationResponse>;
