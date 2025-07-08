@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    // allow modern features in emitted JS
+    "target": "ES2015",
+
+    // include ES2015 built-in types (Map, Set, Promise…)
+    "lib": ["ES2015", "DOM"],
+
+    // module resolution, strictness, etc.
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+
+    "rootDir": "./src",        // compile everything under src/
+    "outDir": "./dist",        // emit .js/.d.ts into dist/
+    "declaration": true,       // generate .d.ts files
+    "declarationDir": "./dist",// put declarations beside .js in dist/
+    // ...other options...
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

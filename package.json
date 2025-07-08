@@ -1,0 +1,31 @@
+{
+  "name": "@naeimsafaee/ipg-node",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/naeimsafaee/IPG-node.git"
+  },
+  "keywords": [
+    "IPG-node",
+    "Iranian payment"
+  ],
+  "files": [
+    "dist"
+  ],
+  "author": "naeimsafaee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/naeimsafaee/IPG-node/issues"
+  },
+  "homepage": "https://github.com/naeimsafaee/IPG-node#readme",
+  "description": "Pluggable drivers for Iranian payment gateways",
+  "dependencies": {
+    "axios": "^1.10.0"
+  }
+}

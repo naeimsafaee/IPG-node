@@ -1,0 +1,51 @@
+# Node dependencies
+/node_modules/
+
+# Build output
+/dist/
+/lib/
+/build/
+
+# TypeScript incremental build file
+*.tsbuildinfo
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# Coverage
+/coverage/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Editor directories and files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Optional npm cache directory
+.npm
+
+# Optional REPL history
+.node_repl_history
+
+# Lock files (if you prefer not to commit)
+/package-lock.json
+/yarn.lock
