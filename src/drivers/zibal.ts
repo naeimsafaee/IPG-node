@@ -31,6 +31,7 @@ export class ZibalDriver implements PaymentDriver {
             return {
                 success: true,
                 paymentUrl: `${this.baseUrl}/start/${data.trackId}`,
+                trackId: data.trackId,
                 raw: data,
             };
         }

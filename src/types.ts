@@ -11,6 +11,7 @@ export interface PaymentRequest {
 export interface PaymentResponse {
     success: boolean;
     paymentUrl?: string;
+    trackId?: string
     raw?: any;               // raw API payload
 }
 
