@@ -42,7 +42,7 @@ class PaymentGateway {
         driverName: string,
         data: Parameters<PaymentDriver['verifyPayment']>[0]
     ) {
-        return this.driver(driverName).verifyPayment(data);
+        return this.driver(driverName).verifyPayment(data, this.config);
     }
 }
 

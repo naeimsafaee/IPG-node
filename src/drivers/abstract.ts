@@ -6,7 +6,7 @@ export interface PaymentDriver {
     createPayment(req: PaymentRequest , config?: DriverConfig): Promise<PaymentResponse>;
 
     /** After callback, verify the transaction */
-    verifyPayment(data: any): Promise<VerificationResponse>;
+    verifyPayment(data: any , config?: DriverConfig): Promise<VerificationResponse>;
 
     /** A unique name for look-ups (“zibal”, “idpay”, etc.) */
     driverName: string;

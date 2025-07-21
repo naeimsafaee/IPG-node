@@ -38,11 +38,11 @@ export class ZibalDriver implements PaymentDriver {
         return { success: false, raw: data };
     }
 
-    async verifyPayment(data: any): Promise<VerificationResponse> {
+    async verifyPayment(data: any , config?: DriverConfig): Promise<VerificationResponse> {
         const { trackId } = data; // e.g. from query string
         const { data: res } = await axios.post(
             `${this.baseUrl}/v1/verify`,
-            { merchant: this.apiKey, trackId }
+            { merchant: config?.sandbox ? "zibal" : this.apiKey, trackId }
         );
         return {
             success: res.result === 100,
